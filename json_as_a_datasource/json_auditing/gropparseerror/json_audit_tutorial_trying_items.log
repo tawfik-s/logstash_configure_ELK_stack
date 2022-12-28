@@ -1,0 +1,5 @@
+2019-10-24 14:37:38,329 | INFO | REQUEST | orderfatura | Request : {"userToken" : "e01920ke0i09203k2","Price" : "3333","Items" : [{"itemId":"134o2","quantity":"4.2"},{"itemId":"2333","quantity":"10"}]}
+2019-10-25 14:37:37,321 | DEBUG | REQUEST | login | Request : {"username" : "UserName123","password" : "password123"}
+2019-10-25 15:00:00,111 | DEBUG | REQUEST | login | Request : {"username" : "AWDAWDAWD","password" : "ADADPASSWORD"}
+2019-10-26 14:37:38,222 | INFO | REQUEST | orderfatura | Request : {"userToken" : "e01920ke0i09203k2","Price" : "5000","Items" : [{"itemId":"134o2","quantity":"4.2"},{"itemId":"2333","quantity":"10"}]}
+2019-10-27 15:00:00,111 | DEBUG | REQUEST | login | Request : {"username" : "aoidjaod","password" : "awdwwdwd"}

@@ -1,0 +1,45 @@
+If condition in logstash: https://www.elastic.co/guide/en/logstash/current/event-dependent-configuration.html
+
+Decode base64 with logstash: https://discuss.elastic.co/t/base64-decode/186564
+
+if exists in logstash: https://stackoverflow.com/questions/30309096/logstash-check-if-field-exists
+
+base example: https://itnext.io/common-logstash-use-cases-with-grok-json-and-mutate-filters-elk-logstash-in-docker-filebeat-871ed58c7651
+
+GSUB remove leading characters: https://discuss.elastic.co/t/removing-leading-character-and-trailing-2-characters/214634/2
+
+Custom regex pattern: https://medium.com/statuscode/using-custom-regex-patterns-in-logstash-fa3c5b40daab
+
+Grok logstash regex: https://logz.io/blog/logstash-grok/
+
+Regular expression in elastic: https://www.elastic.co/guide/en/elasticsearch/reference/current/regexp-syntax.html
+
+Interesting filter plugins:
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html#docs-index-api-path-params
+Index API:
+Adds a JSON document to the specified data stream or index and makes it searchable. If the target is an index and the document already exists, the request updates the document and increments its version.
+
+
+https://www.elastic.co/guide/en/logstash/current/plugins-filters-json.html
+Json plugin
+
+
+https://www.elastic.co/guide/en/logstash/current/plugins-filters-aggregate.html#plugins-filters-aggregate
+Aggregate filter plugin
+The aim of this filter is to aggregate information available among several events (typically log lines) belonging to a same task, and finally push aggregated information into final task event.
+
+
+https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html
+Date plugin
+
+
+https://www.elastic.co/guide/en/logstash/current/plugins-filters-http.html
+HTTP plugin
+The HTTP filter provides integration with external web services/REST APIs.
+
+
+https://logz.io/learn/complete-guide-elk-stack/#installing-elk
+elastic search article
+
+

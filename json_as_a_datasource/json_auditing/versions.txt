@@ -1,0 +1,16 @@
+version 1: 
+    folder: gropparseerror
+    v1.1: 
+        file: json_audit_tutorial
+        description: got login, orderfatura working but order without items
+    v1.2: 
+        file: json_audit_tutorial_trying_items
+        description: working formula, got login request that removes password, orderfatura where items are inserted normally but the values need to be strings
+
+version 2: 
+    folder: v2
+    v2.1: 
+        folder: v2.1
+        file: at_v2.1
+        description: will try to process jwt token using base 64, body to json then get the userID 
+        result: success, if userToken is found in request (main json payload) it will be processed into a "User_Sub" variable, if not it will not be done 

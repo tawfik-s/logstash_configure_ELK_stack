@@ -1,0 +1,6 @@
+{"action":"/admin/subaction"}
+{"action":"/admin/transactions/subaction/"}
+{"action":"/admin/transactions/subaction/e34"}
+{"action":"/admin/transactions/subaction"}
+{"action":"/v2_2/subaction"}
+{"action":"/admin/transactions"}

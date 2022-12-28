@@ -1,0 +1,99 @@
+date {
+        match => ["timestamp", "ISO8601", "YYYY-MM-dd HH:mm:ss,SSS"]
+    }
+
+
+
+    elasticsearch {
+        hosts => "http://localhost:9200"
+        index => "json_audit_tutorial_trial_2"
+    }
+
+
+remove_field => [
+            "[payload][password]"
+        ]
+
+
+
+
+{"level":"INFO","User_Sub":"1234567890","action":"orderfatura","UserTokenBody":"eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ","payload":{"Items":[{"quantity":"4.2","itemId":"134o2"},{"quantity":"10","itemId":"2333"}],"Price":"3333","userToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","client":"Fatura app"},"UserTokenFull":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","UserTokenSignature":"SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","@version":"1","@timestamp":"2019-10-24T12:37:38.329Z","decoded":"{\"sub\":\"1234567890\",\"name\":\"John Doe\",\"iat\":1516239022}","tags":["Order Fatura"],"request":"REQUEST","decodedAfterFilteration":"{\"sub\":\"1234567890\",\"name\":\"John Doe\",\"iat\":1516239022}","host":"DESKTOP-58VLO46","decodedAsJson":{"sub":"1234567890","name":"John Doe","iat":1516239022},"UserTokenHead":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9","timestamp":"2019-10-24 14:37:38,329","path":"C:/elastic_stack/practicing/json_auditing/v2/v2.1/at_v2.1.log"}
+
+"userToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+
+
+
+
+
+
+
+{"host":"DESKTOP-58VLO46","path":"C:/elastic_stack/practicing/json_auditing/v2/v2.1/at_v2.1.log","payload":{"userToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","Items":[{"itemId":"134o2","quantity":"4.2"},{"itemId":"2333","quantity":"10"}],"Price":"3333","client":"Fatura app"},"timestamp":"2019-10-24 14:37:38,329","@version":"1","UserTokenHead":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9","request":"REQUEST","UserTokenBody":"eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ","decodedAsJson":{"name":"John Doe","sub":"1234567890","iat":1516239022},"@timestamp":"2019-10-24T12:37:38.329Z","action":"orderfatura","User_Sub":"1234567890","tags":["Order Fatura"],"UserTokenFull":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","level":"INFO","decoded":"{\"sub\":\"1234567890\",\"name\":\"John Doe\",\"iat\":1516239022}","UserTokenSignature":"SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c","decodedAfterFilteration":"{\"sub\":\"1234567890\",\"name\":\"John Doe\",\"iat\":1516239022}"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    workings
+    input {
+    file {
+        path => "C:/elastic_stack/practicing/json_auditing/trying_drop/json_audit_tutorial_trying_drop.log"
+        start_position => "beginning"
+        sincedb_path => "NULL"
+    }
+}
+filter {
+     dissect {
+        mapping => {
+            "message" => "%{timestamp} | %{level} | %{request} | %{action} | %{message}"
+        }
+    }
+    mutate {
+        copy => {
+            "message" => "message_copy"
+        }
+    }
+    grok {
+        match => {
+            "message_copy" => ["%{JSON:payload_raw}"]
+        }
+        pattern_definitions => {
+            "JSON" => "{.*$"
+        }
+    }
+     json {
+        source => "payload_raw"
+        target => "payload"
+    }
+
+    mutate {
+        remove_field => ["payload_raw", "message_copy"]
+    }
+    
+}
+output {
+    file{
+        path =>"C:/elastic_stack/practicing/json_auditing/trying_drop/output.txt"
+    }
+    stdout{
+    }
+}

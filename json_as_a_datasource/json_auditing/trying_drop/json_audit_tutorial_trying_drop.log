@@ -1,0 +1,4 @@
+2019-10-24 14:37:38,329 | INFO | REQUEST | order fatura | Request : {"userToken" : "e01920ke0i09203k2","Price" : "5000"}
+2019-10-25 14:37:37,321 | INFO | REQUEST | login | Request : {"username" : "UserName123","password" : "password123"}
+2019-10-25 15:00:00,111 | INFO | REQUEST | login | Request : {"username" : "AWDAWDAWD","password" : "ADADPASSWORD"}
+2019-10-26 14:37:38,222 | INFO | REQUEST | order fatura | Request : {"userToken" : "e01920ke0i09203k2","Price" : "5000"}
