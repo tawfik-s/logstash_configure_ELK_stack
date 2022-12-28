@@ -13,6 +13,8 @@ this repository to learn how to configure logstash input output and filter
 
 ### filter data and format it
 
+1. i filter data with format json and direct it to elastic search
+
 ### for data distination
 
 1. elastic search
